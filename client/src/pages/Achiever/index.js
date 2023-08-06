@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { GetAchievers } from "../../apicalls/achiever";
 import { SetLoader } from "../../redux/loadersSlice";
@@ -8,13 +8,11 @@ import moment from "moment";
 import { BiSolidMedal } from "react-icons/bi";
 
 function Achievers() {
-  //{product.age === 1 ? " year" : " years"} {' '}
-  //const [showFilters, setShowFilters] = React.useState(true);
   const [achievers, setAchievers] = React.useState([]);
 
   const dispatch = useDispatch();
-  //const { user } = useSelector((state) => state.users);
-  const getData = async () => {
+
+  const getData = useCallback(async () => {
     try {
       dispatch(SetLoader(true));
       const response = await GetAchievers();
@@ -30,11 +28,11 @@ function Achievers() {
       dispatch(SetLoader(false));
       message.error(error.message);
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <>

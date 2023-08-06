@@ -34,7 +34,7 @@ const Home = () => {
       clearInterval(timer);
       clearInterval(pTimer);
     };
-  }, []);
+  }, [paragrapgh.length, texts.length]);
 
   return (
     <React.Fragment>

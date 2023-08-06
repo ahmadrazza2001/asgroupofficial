@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import Divider from "../../components/Divider";
@@ -16,29 +16,32 @@ const rules = [
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const onFinish = async (values) => {
-    try {
-      dispatch(SetLoader(true));
-      const response = await LoginUser(values);
-      dispatch(SetLoader(false));
-      if (response.success) {
-        message.success(response.message);
-        localStorage.setItem("token", response.data);
-        window.location.href = "/admin";
-      } else {
-        throw new Error(response.message);
+  const onFinish = useCallback(
+    async (values) => {
+      try {
+        dispatch(SetLoader(true));
+        const response = await LoginUser(values);
+        dispatch(SetLoader(false));
+        if (response.success) {
+          message.success(response.message);
+          localStorage.setItem("token", response.data);
+          window.location.href = "/admin";
+        } else {
+          throw new Error(response.message);
+        }
+      } catch (error) {
+        dispatch(SetLoader(false));
+        message.error(error.message);
       }
-    } catch (error) {
-      dispatch(SetLoader(false));
-      message.error(error.message);
-    }
-  };
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
   return (
     <React.Fragment>
       <div className="main-container w-full h-screen">

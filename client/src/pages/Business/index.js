@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { GetBusiness } from "../../apicalls/business";
 import { SetLoader } from "../../redux/loadersSlice";
 import { message } from "antd";
-import Divider from "../../components/Divider";
 import moment from "moment";
 import "./business.css";
 
@@ -11,8 +10,8 @@ function Business() {
   const [business, setBusiness] = React.useState([]);
 
   const dispatch = useDispatch();
-  //const { user } = useSelector((state) => state.users);
-  const getData = async () => {
+
+  const getData = useCallback(async () => {
     try {
       dispatch(SetLoader(true));
       const response = await GetBusiness();
@@ -28,11 +27,11 @@ function Business() {
       dispatch(SetLoader(false));
       message.error(error.message);
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <>

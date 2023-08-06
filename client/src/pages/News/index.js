@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { GetNews } from "../../apicalls/products";
 import { SetLoader } from "../../redux/loadersSlice";
 import { message } from "antd";
-import Divider from "../../components/Divider";
 import moment from "moment";
 import "../../index.css";
 
 function News() {
-  //{product.age === 1 ? " year" : " years"} {' '}
-  //const [showFilters, setShowFilters] = React.useState(true);
   const [news, setNews] = React.useState([]);
 
   const dispatch = useDispatch();
-  //const { user } = useSelector((state) => state.users);
-  const getData = async () => {
+
+  const getData = useCallback(async () => {
     try {
       dispatch(SetLoader(true));
       const response = await GetNews();
@@ -30,11 +27,11 @@ function News() {
       dispatch(SetLoader(false));
       message.error(error.message);
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <>
