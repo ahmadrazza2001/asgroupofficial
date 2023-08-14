@@ -11,7 +11,7 @@ import { SetLoader } from "../../../redux/loadersSlice";
 showUploadList={showPreview}*/
 
 function Images({ selectedAchievers, setShowAchieversForm, getData }) {
-  const [showPreview = true, setShowPreview] = React.useState(true);
+  const [setShowPreview] = React.useState(true);
   const [images = [], setImages] = React.useState(selectedAchievers.images);
   const [file = null, setFile] = React.useState(null);
   const dispatch = useDispatch();
