@@ -7,7 +7,6 @@ import Admin from "./pages/Admin";
 import Home from "./pages/Home";
 import News from "./pages/News";
 import Login from "./pages/Login";
-import NewsInfo from "./pages/ProductInfo";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Achievers from "./pages/Achiever";
@@ -69,8 +68,6 @@ function App() {
               </Navbar>
             }
           />
-          <Route path="/news/:id" element={<NewsInfo />} />
-
           <Route
             path="/admin"
             element={

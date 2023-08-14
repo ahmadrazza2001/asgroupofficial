@@ -1,6 +1,6 @@
-import { Button, message, Table } from "antd";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { message, Table } from "antd";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import moment from "moment";
 import { SetLoader } from "../../redux/loadersSlice";
 import { GetAllUsers, UpdateUserStatus } from "../../apicalls/users";
@@ -10,7 +10,7 @@ function Users() {
 
   const dispatch = useDispatch();
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       dispatch(SetLoader(true));
       const response = await GetAllUsers(null);
@@ -22,7 +22,7 @@ function Users() {
       dispatch(SetLoader(false));
       message.error(error.message);
     }
-  };
+  }, [dispatch, setUsers]);
 
   const onStatusUpdate = async (id, status) => {
     try {
@@ -40,6 +40,10 @@ function Users() {
       message.error(error.message);
     }
   };
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const columns = [
     {
@@ -128,9 +132,6 @@ function Users() {
     },
   ];
 
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <div className="w-full px-2 sm:px-0">
       <div className="overflow-auto">

@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Avatar, Badge, message } from "antd";
+import React, { useCallback, useEffect, useState } from "react";
+import { message } from "antd";
 import { GetCurrentUser } from "../apicalls/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SetLoader } from "../redux/loadersSlice";
 import { SetUser } from "../redux/usersSlice";
-import {
-  Nav,
-  NavLink,
-  Logo,
-  NavBtn,
-  NavBtnLink,
-  Bars,
-  NavMenu,
-} from "./navElements";
+import { Nav, NavLink, Logo, NavBtnLink, Bars, NavMenu } from "./navElements";
 import { BsGraphUpArrow } from "react-icons/bs";
 
 import { BiLogOut } from "react-icons/bi";
@@ -23,8 +15,6 @@ import {
   BiSolidNews,
   BiSolidMedal,
   BiSolidGroup,
-  BiSolidDashboard,
-  BiLogIn,
 } from "react-icons/bi";
 
 function ProtectedPage({ children }) {
@@ -32,7 +22,7 @@ function ProtectedPage({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const validateToken = async () => {
+  const validateToken = useCallback(async () => {
     try {
       dispatch(SetLoader(true));
       const response = await GetCurrentUser();
@@ -48,7 +38,7 @@ function ProtectedPage({ children }) {
       navigate("/login");
       message.error(error.message);
     }
-  };
+  }, [dispatch, navigate]);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -68,7 +58,7 @@ function ProtectedPage({ children }) {
     } else {
       navigate("/login");
     }
-  }, []);
+  }, [navigate, validateToken]);
 
   return (
     user && (

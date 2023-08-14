@@ -41,7 +41,7 @@ function Admin() {
     if (user.role !== "admin") {
       navigate("/");
     }
-  }, []);
+  });
 
   return (
     <>

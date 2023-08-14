@@ -36,7 +36,7 @@ function Register() {
     if (localStorage.getItem("token")) {
       navigate("/");
     }
-  }, []);
+  });
 
   return (
     <div className="h-screen bg-primary flex justify-center items-center">

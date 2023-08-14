@@ -4,11 +4,8 @@ import { useDispatch } from "react-redux";
 import { EditBusiness, UploadBusinessImage } from "../../../apicalls/business";
 import { SetLoader } from "../../../redux/loadersSlice";
 
-/*fileList={file ? [file] : []}
-showUploadList={showPreview}*/
-
 function Images({ selectedBusiness, setShowBusinessForm, getData }) {
-  const [showPreview = true, setShowPreview] = React.useState(true);
+  const [setShowPreview] = React.useState(true);
   const [images = [], setImages] = React.useState(selectedBusiness.images);
   const [file = null, setFile] = React.useState(null);
   const dispatch = useDispatch();

@@ -4,18 +4,14 @@ import { useDispatch } from "react-redux";
 import { EditNews, UploadNewsImage } from "../../../apicalls/products";
 import { SetLoader } from "../../../redux/loadersSlice";
 
-/*fileList={file ? [file] : []}
-showUploadList={showPreview}*/
-
 function Images({ selectedNews, setShowNewsForm, getData }) {
-  const [showPreview = true, setShowPreview] = React.useState(true);
+  const [setShowPreview] = React.useState(true);
   const [images = [], setImages] = React.useState(selectedNews.images);
   const [file = null, setFile] = React.useState(null);
   const dispatch = useDispatch();
   const upload = async () => {
     try {
       dispatch(SetLoader(true));
-      // Upload Image to Cloudinary
       const formData = new FormData();
       formData.append("file", file);
       formData.append("newsId", selectedNews._id);

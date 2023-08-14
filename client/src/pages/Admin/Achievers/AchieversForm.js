@@ -1,7 +1,7 @@
-import { Modal, Tabs, Form, Input, Row, Col, message } from "antd";
+import { Modal, Tabs, Form, Input, message } from "antd";
 import { Select } from "antd";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AddAchievers, EditAchievers } from "../../../apicalls/achiever";
 import { SetLoader } from "../../../redux/loadersSlice";
 import React, { useEffect } from "react";
