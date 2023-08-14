@@ -1,5 +1,5 @@
 import { Button, message, Table } from "antd";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { DeleteAchievers, GetAchievers } from "../../../apicalls/achiever";
@@ -14,7 +14,7 @@ function Achievers() {
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       dispatch(SetLoader(true));
       const response = await GetAchievers({
@@ -28,7 +28,7 @@ function Achievers() {
       dispatch(SetLoader(false));
       message.error(error.message);
     }
-  };
+  }, [dispatch, user._id]);
 
   const deleteAchievers = async (id) => {
     try {
@@ -46,6 +46,9 @@ function Achievers() {
       message.error(error.message);
     }
   };
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const columns = [
     {
@@ -149,9 +152,6 @@ function Achievers() {
     },
   ];
 
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <div className="w-full px-2 sm:px-0">
       <div className="flex flex-col-reverse sm:flex-row justify-between mb-2">

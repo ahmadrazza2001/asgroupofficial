@@ -11,7 +11,13 @@ const businessSchema = new mongoose.Schema(
       required: true,
     },
 
-    points: {
+    point1: {
+      type: String,
+    },
+    point2: {
+      type: String,
+    },
+    point3: {
       type: String,
     },
 

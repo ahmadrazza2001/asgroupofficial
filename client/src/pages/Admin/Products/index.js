@@ -1,5 +1,5 @@
 import { Button, message, Table } from "antd";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { DeleteNews, GetNews } from "../../../apicalls/products";
@@ -13,7 +13,7 @@ function News() {
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       dispatch(SetLoader(true));
       const response = await GetNews({
@@ -27,7 +27,7 @@ function News() {
       dispatch(SetLoader(false));
       message.error(error.message);
     }
-  };
+  }, [dispatch, user._id]);
 
   const deleteNews = async (id) => {
     try {
@@ -45,6 +45,9 @@ function News() {
       message.error(error.message);
     }
   };
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const columns = [
     {
@@ -138,9 +141,6 @@ function News() {
     },
   ];
 
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <div className="w-full px-2 sm:px-0">
       <div className="flex flex-col-reverse sm:flex-row justify-between mb-2">

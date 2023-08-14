@@ -1,5 +1,5 @@
 import { Button, message, Table } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react"; // <-- Added useCallback
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { DeleteBusiness, GetBusiness } from "../../../apicalls/business";
@@ -14,7 +14,7 @@ function Business() {
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       dispatch(SetLoader(true));
       const response = await GetBusiness({
@@ -28,7 +28,7 @@ function Business() {
       dispatch(SetLoader(false));
       message.error(error.message);
     }
-  };
+  }, [dispatch, user._id]);
 
   const deleteBusiness = async (id) => {
     try {
@@ -46,6 +46,9 @@ function Business() {
       message.error(error.message);
     }
   };
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const columns = [
     {
@@ -90,7 +93,11 @@ function Business() {
       textWrap: "word-break",
       render: (text, record) => {
         return (
-          <span style={{ color: "#D4D4D4" }}>will be available soon..</span>
+          <span>
+            {record.point1}
+            {record.point2}
+            {record.point3}
+          </span>
         );
       },
     },
@@ -143,9 +150,6 @@ function Business() {
     },
   ];
 
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <div className="w-full px-2 sm:px-0">
       <div className="flex flex-col-reverse sm:flex-row justify-between mb-2">

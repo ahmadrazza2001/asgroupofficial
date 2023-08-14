@@ -28,7 +28,7 @@ const about = () => {
           {[
             {
               name: "Ahsan Yar Babar",
-              role: "C.E.0",
+              role: "C.E.O",
               image:
                 "https://res.cloudinary.com/sbcunueh/image/upload/v1690630718/hand2hand/ozf8xvvrp5khshbid2g7.png",
               text:

@@ -1,6 +1,5 @@
 import { Modal, Tabs, Form, Input, message } from "antd";
-import { Button } from "antd";
-import ReactQuill from "react-quill";
+
 import { useDispatch } from "react-redux";
 import { AddBusiness, EditBusiness } from "../../../apicalls/business";
 import { SetLoader } from "../../../redux/loadersSlice";
@@ -83,56 +82,24 @@ function BusinessForm({
               <Form.Item label="Description" name="description" rules={rules}>
                 <Input.TextArea autoSize={{ minRows: 4, maxRows: 8 }} />
               </Form.Item>
-              <Form.List name="points">
-                {(fields, { add, remove }) => (
-                  <>
-                    {fields.map((field) => (
-                      <Form.Item key={field.key}>
-                        <Form.Item
-                          {...field}
-                          validateTrigger={["onChange", "onBlur"]}
-                          rules={[
-                            {
-                              required: true,
-                              whitespace: true,
-                              message:
-                                "Please input a bullet point or delete this field.",
-                            },
-                          ]}
-                          noStyle
-                        >
-                          <Input
-                            placeholder="Bullet point"
-                            style={{ width: "70%" }}
-                          />
-                        </Form.Item>
-                        {fields.length > 1 ? (
-                          <Button
-                            type="danger"
-                            onClick={() => remove(field.name)}
-                            style={{ margin: "0 8px", color: "red" }}
-                          >
-                            Remove
-                          </Button>
-                        ) : null}
-                      </Form.Item>
-                    ))}
-                    <Form.Item>
-                      <Button
-                        disabled
-                        onClick={() => add()}
-                        style={{
-                          background: "indigo",
-                          color: "white",
-                        }}
-                      >
-                        Add a bullet point
-                      </Button>
-                    </Form.Item>
-                    (This option will be available soon)
-                  </>
-                )}
-              </Form.List>
+              <Form.Item label="Business Point 1 (optional)" name="point1">
+                <Input
+                  type="text"
+                  placeholder="Enter each point on a new line"
+                />
+              </Form.Item>
+              <Form.Item label="Business Point 2 (optional)" name="point2">
+                <Input
+                  type="text"
+                  placeholder="Enter each point on a new line"
+                />
+              </Form.Item>
+              <Form.Item label="Business Point 3 (optional)" name="point3">
+                <Input
+                  type="text"
+                  placeholder="Enter each point on a new line"
+                />
+              </Form.Item>
             </Form>
           </Tabs.TabPane>
           <Tabs.TabPane tab="Upload Logo " key="2" disabled={!selectedBusiness}>

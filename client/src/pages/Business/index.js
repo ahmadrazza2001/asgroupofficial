@@ -5,6 +5,7 @@ import { SetLoader } from "../../redux/loadersSlice";
 import { message } from "antd";
 import moment from "moment";
 import "./business.css";
+import { BiCheckDouble } from "react-icons/bi";
 
 function Business() {
   const [business, setBusiness] = React.useState([]);
@@ -88,6 +89,24 @@ function Business() {
                         <p className="card-text text-left">
                           {business.description}
                         </p>
+                        <div className="card-text text-left">
+                          <div style={{ display: "flex" }}>
+                            <BiCheckDouble
+                              style={{ fontSize: "20px", marginRight: "10px" }}
+                            />
+                            <p style={{ fontSize: "13px" }}>
+                              {business.point1}
+                            </p>
+                          </div>
+                          <div style={{ display: "flex" }}>
+                            <BiCheckDouble
+                              style={{ fontSize: "20px", marginRight: "10px" }}
+                            />
+                            <p style={{ fontSize: "13px" }}>
+                              {business.point2}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
