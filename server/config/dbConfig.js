@@ -6,7 +6,7 @@ connection.on("connected", () => {
 });
 
 connection.on("error", (err) => {
-  console.log("Mongo DB Connection Failed");
+  console.log("Mongo DB Connection Failed", err);
 });
 
 module.exports = connection;
