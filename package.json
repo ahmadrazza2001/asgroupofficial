@@ -2,14 +2,9 @@
   "name": "ahmad",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "client-install": "cd client && npm install",
-    "client-build": "cd client && npm run build",
-    "server-install": "cd server && npm install",
-    "server-build": "tsc -p ./server",
-    "start": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server/server.js"
   },
   "author": "",
   "license": "ISC",
