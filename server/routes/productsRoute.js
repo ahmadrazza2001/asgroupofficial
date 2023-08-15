@@ -147,7 +147,7 @@ router.post(
 );
 
 // update news status
-router.put("/update-news-status/:id", authMiddleware, async (req, res) => {
+/*router.put("/update-news-status/:id", authMiddleware, async (req, res) => {
   try {
     const { status } = req.body;
     const updatedNews = await News.findByIdAndUpdate(req.params.id, {
@@ -174,6 +174,6 @@ router.put("/update-news-status/:id", authMiddleware, async (req, res) => {
       message: error.message,
     });
   }
-});
+});*/
 
 module.exports = router;

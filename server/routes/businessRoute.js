@@ -150,7 +150,7 @@ router.post(
 );
 
 // update product status
-router.put("/update-business-status/:id", authMiddleware, async (req, res) => {
+/*router.put("/update-business-status/:id", authMiddleware, async (req, res) => {
   try {
     const { status } = req.body;
     const updatedBusiness = await Business.findByIdAndUpdate(req.params.id, {
@@ -177,6 +177,6 @@ router.put("/update-business-status/:id", authMiddleware, async (req, res) => {
       message: error.message,
     });
   }
-});
+});*/
 
 module.exports = router;
