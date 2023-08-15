@@ -11,6 +11,14 @@ const bidsRoute = require("./routes/bidsRoute");
 const notificationsRoute = require("./routes/notificationsRoute");
 const achieversRoute = require("./routes/achieversRoute");
 const businessRoute = require("./routes/businessRoute");
+const cors = require("cors");
+app.use(
+  cors({
+    origin: ["https://asgroupofficial.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
 app.use("/api/users", usersRoute);
 app.use("/api/news", newsRoute);
