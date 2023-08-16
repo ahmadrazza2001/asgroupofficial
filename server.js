@@ -2,15 +2,15 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 require("dotenv").config();
-const dbConfig = require("./config/dbConfig");
+const dbConfig = require("./server/config/dbConfig");
 const port = process.env.PORT || 5000;
 
-const usersRoute = require("./routes/usersRoute");
-const newsRoute = require("./routes/productsRoute");
-const bidsRoute = require("./routes/bidsRoute");
-const notificationsRoute = require("./routes/notificationsRoute");
-const achieversRoute = require("./routes/achieversRoute");
-const businessRoute = require("./routes/businessRoute");
+const usersRoute = require("./server/routes/usersRoute");
+const newsRoute = require("./server/routes/productsRoute");
+const bidsRoute = require("./server/routes/bidsRoute");
+const notificationsRoute = require("./server/routes/notificationsRoute");
+const achieversRoute = require("./server/routes/achieversRoute");
+const businessRoute = require("./server/routes/businessRoute");
 //const cors = require("cors");
 /*app.use(
   cors({
