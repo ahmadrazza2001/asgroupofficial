@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import { Button, Form, Input, message } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Divider from "../../components/Divider";
 import { LoginUser } from "../../apicalls/users";
 import { useDispatch } from "react-redux";
@@ -94,12 +94,9 @@ function Login() {
 
               <div className="mt-5 text-center">
                 <span className="text-gray-500" style={{ fontSize: "12px" }}>
-                  (Please avoid trying login if you're not an admin){" "}
-                  {/*
-                 <Link to="/register" className="text-primary">
-                Register
-              </Link>
-                */}
+                  <Link to="/register" className="text-primary">
+                    Don't have any account? Signup
+                  </Link>
                 </span>
               </div>
             </Form>
